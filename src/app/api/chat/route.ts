@@ -11,6 +11,7 @@ export async function POST(req: Request) {
 
   const result = streamText({
     model: google("gemini-2.5-flash"),
+    // model: openai("gpt-4o-mini"), // Or whichever model you prefer
     system: `You are a helpful assistant that analyzes company culture and work environment by searching Reddit.
     Follow these steps EXACTLY in order:
     1. First, use searchRedditPosts to search for posts about the company.
