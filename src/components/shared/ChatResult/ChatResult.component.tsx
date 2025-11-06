@@ -14,7 +14,7 @@ export default function ChatResult({ messages, isStreaming }: ChatResultProps) {
   console.debug(messages);
 
   return (
-    <div className="w-full max-w-3xl bg-card border border-border rounded-lg p-6 shadow-lg animate-in fade-in slide-in-from-bottom-4 duration-300">
+    <div className="w-full bg-card border border-border rounded-lg p-6 shadow-lg animate-in fade-in slide-in-from-bottom-4 duration-300 dark:shadow-white/5">
       {messages
         .filter((message) => message.role !== "user")
         .map((message) => (

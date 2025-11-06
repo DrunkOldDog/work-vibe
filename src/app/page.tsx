@@ -14,13 +14,13 @@ export default function Chat() {
   const inputAndChatContainerClasses = "w-full max-w-3xl";
 
   return (
-    <div className="container mx-auto min-h-screen py-10">
-      <div className="flex flex-col gap-10 justify-center items-center h-full">
+    <div className="container mx-auto px-4 sm:px-0 min-h-screen py-10">
+      <div className="flex flex-col gap-10 justify-center items-center mt-40 mb-8">
         <div className="text-center">
-          <h1 className="text-8xl font-bold">
+          <h1 className="text-5xl font-bold sm:text-8xl">
             AI-Powered Company <br /> Vibe Checker
           </h1>
-          <p className="text-xl text-gray-500 max-w-2xl mx-auto mt-4">
+          <p className="text-lg sm:text-xl text-gray-500 max-w-2xl mx-auto mt-4">
             Thinking of applying somewhere? Our AI checks the reviews and
             reveals if it&apos;s good vibes 😎 or red flags 🚩.
           </p>
@@ -47,15 +47,17 @@ export default function Chat() {
               "Product Manager at Airbnb...",
               "UX Designer at Spotify...",
             ]}
-            className="h-12 w-full shadow-md dark:shadow-lg dark:shadow-white/5 border border-gray-200 dark:border-gray-800"
+            className="h-10 sm:h-12 sm:h-12 w-full shadow-md dark:shadow-lg dark:shadow-white/5 border border-gray-200 dark:border-gray-800"
             onChange={(e) => setInput(e.currentTarget.value)}
           />
 
-          <Button type="submit" className="cursor-pointer min-w-20 h-12">
+          <Button type="submit" className="cursor-pointer min-w-20 h-10 sm:h-12">
             Check Vibe
           </Button>
         </form>
+      </div>
 
+      <div className="flex justify-center items-center">
         {messages.length > 0 && (
           <div className={inputAndChatContainerClasses}>
             <ChatResult
