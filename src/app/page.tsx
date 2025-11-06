@@ -1,14 +1,17 @@
 "use client";
 
 import { ChatResult } from "@/components/shared/ChatResult";
+import { MotionInput } from "@/components/shared/MotionInput";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 import { useChat } from "@ai-sdk/react";
 import { useState } from "react";
 
 export default function Chat() {
   const [input, setInput] = useState("");
   const { messages, status, sendMessage } = useChat();
+
+  const inputAndChatContainerClasses = "w-full max-w-3xl";
 
   return (
     <div className="container mx-auto min-h-screen py-10">
@@ -29,26 +32,37 @@ export default function Chat() {
             sendMessage({ text: input });
             setInput("");
           }}
-          className="flex gap-3 w-full max-w-md"
+          className={cn("flex gap-3", inputAndChatContainerClasses)}
         >
-          <Input
+          <MotionInput
             required
             value={input}
-            placeholder="Enter company name..."
-            className="h-10 w-full"
+            animatedPlaceholders={[
+              "Software Engineer at Google...",
+              "Frontend Engineer at Meta...",
+              "Backend Engineer at Apple...",
+              "Full Stack Engineer at Amazon...",
+              "DevOps Engineer at Microsoft...",
+              "Data Scientist at Tesla...",
+              "Product Manager at Airbnb...",
+              "UX Designer at Spotify...",
+            ]}
+            className="h-12 w-full shadow-md dark:shadow-lg dark:shadow-white/5 border border-gray-200 dark:border-gray-800"
             onChange={(e) => setInput(e.currentTarget.value)}
           />
 
-          <Button type="submit" className="cursor-pointer min-w-20 h-full">
-            Ask
+          <Button type="submit" className="cursor-pointer min-w-20 h-12">
+            Check Vibe
           </Button>
         </form>
 
         {messages.length > 0 && (
-          <ChatResult
-            messages={messages}
-            isStreaming={status === "streaming"}
-          />
+          <div className={inputAndChatContainerClasses}>
+            <ChatResult
+              messages={messages}
+              isStreaming={status === "streaming"}
+            />
+          </div>
         )}
       </div>
     </div>
