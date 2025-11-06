@@ -23,6 +23,11 @@ export async function GET(request: Request) {
       {
         headers: {
           "User-Agent": "WorkVibe/1.0",
+          Authorization: `Basic ${btoa(
+            process.env.REDDIT_CLIENT_ID +
+              ":" +
+              process.env.REDDIT_CLIENT_SECRET
+          )}`,
         },
       }
     );
