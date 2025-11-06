@@ -1,6 +1,5 @@
 import { UIMessage } from "@ai-sdk/react";
-import { SearchRedditPosts } from "../SearchRedditPosts";
-import { SearchRedditComments } from "../SearchRedditComments";
+import { Tool } from "../Tool";
 import { VibeScore } from "../VibeScore";
 
 import type { RedditPost, RedditComment } from "@/types";
@@ -24,17 +23,27 @@ export default function ChatResult({ messages }: ChatResultProps) {
                   return <div key={`${message.id}-${i}`}>{part.text}</div>;
                 case "tool-searchRedditPosts":
                   return (
-                    <SearchRedditPosts
+                    <Tool
                       key={part.toolCallId || `${message.id}-${i}`}
-                      redditPostData={part.output as RedditPost[]}
-                    />
+                      isLoading={
+                        !(part.state === "output-available" && part.output)
+                      }
+                    >
+                      Reddit Posts Analyzed:{" "}
+                      {(part.output as RedditPost[])?.length || 0}
+                    </Tool>
                   );
                 case "tool-searchRedditComments":
                   return (
-                    <SearchRedditComments
+                    <Tool
                       key={part.toolCallId || `${message.id}-${i}`}
-                      redditCommentData={part.output as RedditComment[]}
-                    />
+                      isLoading={
+                        !(part.state === "output-available" && part.output)
+                      }
+                    >
+                      Reddit Comments Analyzed:{" "}
+                      {(part.output as RedditComment[])?.length || 0}
+                    </Tool>
                   );
                 case "tool-getVibeScore":
                   return (
